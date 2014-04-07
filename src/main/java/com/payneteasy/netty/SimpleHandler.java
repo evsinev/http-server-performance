@@ -25,7 +25,7 @@ public class SimpleHandler extends SimpleChannelInboundHandler<HttpObject> {
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
 //        System.out.println("msg = " + msg);
 //        if(msg instanceof LastHttpContent) {
-            ctx.channel().write(response).addListener(ChannelFutureListener.CLOSE);
+            ctx.channel().write(response); //.addListener(ChannelFutureListener.CLOSE);
 //        }
     }
 }

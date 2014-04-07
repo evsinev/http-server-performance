@@ -31,6 +31,7 @@
 
         <jetty.version>9.1.2.v20140210</jetty.version>
 
+        <tomcat.version>7.0.34</tomcat.version>
     </properties>
 
     <repositories>
@@ -104,6 +105,24 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.0.3</version>
+        </dependency>
+
+
+        <!-- tomcat -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-logging-juli</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat.version}</version>
         </dependency>
     </dependencies>
 

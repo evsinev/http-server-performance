@@ -27,3 +27,13 @@ Execute performance test
 ```
 ab -c 10 -k -r -t 10 http://localhost:8080/test
 ```
+
+Ports
+-----
+```
+    public static final int JETTY   = 9001;
+    public static final int NETTY_1 = 9002;
+    public static final int NETTY_2 = 9003;
+    public static final int ONE_NIO = 9004;
+    public static final int RESIN   = 9005;
+```

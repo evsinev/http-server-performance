@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://caucho.com/ns/resin"
+         xmlns:resin="http://caucho.com/ns/resin/core">
+
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.payneteasy.servlet.TestServlet</servlet-class>
+        <load-on-startup/>
+        <async-supported/>
+        <init-param>
+            <param-name>port</param-name>
+            <param-value>50002</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

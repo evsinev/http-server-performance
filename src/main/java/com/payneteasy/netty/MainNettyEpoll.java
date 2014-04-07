@@ -24,10 +24,11 @@ public class MainNettyEpoll {
                     .option(ChannelOption.SO_KEEPALIVE, Boolean.TRUE)
                     .channel(EpollServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
+                    .option(ChannelOption.TCP_NODELAY, true)
                     .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                     .childHandler(new SocketChannelChannelInitializer());
 
-            Channel channel = boot.bind(Config.NETTY_1).sync().channel();
+            Channel channel = boot.bind(Config.NETTY_EPOLL).sync().channel();
             channel.closeFuture().sync();
         } finally {
             group.shutdownGracefully().sync();

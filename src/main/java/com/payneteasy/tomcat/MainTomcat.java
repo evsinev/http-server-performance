@@ -1,5 +1,6 @@
 package com.payneteasy.tomcat;
 
+import com.payneteasy.Config;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.AprLifecycleListener;
@@ -17,12 +18,12 @@ public class MainTomcat {
     public static void main(String[] args) throws LifecycleException, ServletException, UnknownHostException {
         Tomcat tomcat = new Tomcat();
         // will be apr
-        tomcat.setPort(9008);
+        tomcat.setPort(Config.TOMCAT_APR);
 
         tomcat.addWebapp("/", new File("src/main/webapp").getAbsolutePath());
 
         Connector nioConnector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-        nioConnector.setPort(9006);
+        nioConnector.setPort(Config.TOMCAT_NIO);
         nioConnector.setProperty("address", InetAddress.getByName("127.0.0.1").getHostAddress());
         tomcat.getService().addConnector(nioConnector);
 
@@ -31,13 +32,9 @@ public class MainTomcat {
         AprLifecycleListener listener = new AprLifecycleListener();
         server.addLifecycleListener(listener);
 
-        Connector aprConnector = new Connector("org.apache.coyote.http11.Http11Protocol");
-        aprConnector.setProperty("SSLEnabled", "false");
-        aprConnector.setProperty("secure", "false");
-        aprConnector.setProperty("scheme", "http");
-        aprConnector.setPort(9007);
-
-        tomcat.getService().addConnector(aprConnector);
+        Connector bioConnector = new Connector("org.apache.coyote.http11.Http11Protocol");
+        bioConnector.setPort(Config.TOMCAT_BIO);
+        tomcat.getService().addConnector(bioConnector);
 
         tomcat.start();
         tomcat.getServer().await();

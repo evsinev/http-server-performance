@@ -10,11 +10,6 @@ import io.netty.util.CharsetUtil;
 import static io.netty.handler.codec.http.HttpHeaders.Names.*;
 
 public class SimpleHandler extends SimpleChannelInboundHandler<HttpObject> {
-    FullHttpResponse response;
-    protected SimpleHandler() {
-        response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, Unpooled.copiedBuffer("test\n", CharsetUtil.UTF_8));
-        response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
-    }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
@@ -23,9 +18,10 @@ public class SimpleHandler extends SimpleChannelInboundHandler<HttpObject> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-//        System.out.println("msg = " + msg);
-//        if(msg instanceof LastHttpContent) {
-            ctx.channel().write(response); //.addListener(ChannelFutureListener.CLOSE);
-//        }
+        DefaultFullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, Unpooled.copiedBuffer("test\n", CharsetUtil.UTF_8));
+        response.headers().set(CONTENT_LENGTH, 5);
+        response.headers().set(CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
+
+        ctx.channel().write(response);
     }
 }

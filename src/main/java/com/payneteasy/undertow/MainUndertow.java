@@ -13,7 +13,7 @@ public class MainUndertow {
 
     public static void main(String[] args) {
         Undertow server = Undertow.builder()
-                .addHttpListener(Config.UNDERTOW, "localhost")
+                .addHttpListener(Config.UNDERTOW, "0.0.0.0")
                 .setHandler(new HttpHandler() {
                     @Override
                     public void handleRequest(final HttpServerExchange exchange) throws Exception {

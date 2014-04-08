@@ -18,7 +18,6 @@ Where main class can be:
 * com.payneteasy.jetty.MainJetty
 * com.payneteasy.netty.MainNetty 
 * com.payneteasy.netty.MainNettyEpoll
-* com.payneteasy.jetty.HelloWebServer
 * com.payneteasy.one_nio.MainOneNio
 * com.payneteasy.resin.MainResin
 * com.payneteasy.tomcat.MainTomcat

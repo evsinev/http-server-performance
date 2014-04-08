@@ -24,4 +24,9 @@ public class SimpleHandler extends SimpleChannelInboundHandler<HttpObject> {
 
         ctx.channel().write(response);
     }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        ctx.close();
+    }
 }

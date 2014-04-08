@@ -24,7 +24,7 @@ public class MainTomcat {
 
         Connector nioConnector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         nioConnector.setPort(Config.TOMCAT_NIO);
-        nioConnector.setProperty("address", InetAddress.getByName("127.0.0.1").getHostAddress());
+//        nioConnector.setProperty("address", InetAddress.getByName("127.0.0.1").getHostAddress());
         tomcat.getService().addConnector(nioConnector);
 
         // Add AprLifecycleListener
